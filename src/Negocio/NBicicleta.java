@@ -17,16 +17,16 @@ import java.util.Arrays;
  *
  * @author steph
  */
-public class NBicicleta {
-    private DBicicleta dbicicleta;
-    private ListarIDTipo dListarTipo;
-    private ListarTodo dListarTodo;
-    
+public class NBicicleta {    
+    private DBicicleta dListarTipo;
+    private DBicicleta dbicicleta;    
     private Estado estado;
+    
     public NBicicleta(){
         dListarTipo = new ListarIDTipo();
-        dListarTodo = new ListarTodo();        
-        dbicicleta = dListarTipo;
+        dbicicleta = new ListarTodo();        
+//        dListarTodo = new ListarTodo();        
+//        dbicicleta = dListarTipo;
         
         this.estado = new Estado();
     }
@@ -66,13 +66,13 @@ public class NBicicleta {
     public ArrayList Listar(int idTipo) throws SQLException{
 //           dbicicleta.setIdTipo(idTipo);
         dListarTipo.setIdTipo(idTipo);
-        dbicicleta = this.dListarTipo;
-        return dbicicleta.template_method_listar();
+//        dbicicleta = this.dListarTipo;
+        return dListarTipo.template_method_listar();
     }
     
     public ArrayList ListarTodos() throws SQLException{
 //            dbicicleta = new ListarTodo();
-        dbicicleta = this.dListarTodo;
+//        dbicicleta = this.dListarTodo;
         return dbicicleta.template_method_listar();
     }
     
