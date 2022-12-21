@@ -9,11 +9,11 @@ package Negocio.Estado;
  *
  * @author steph
  */
-public class Reservado implements IEstado{
+public class Reservado implements IEstado {
+
     public Reservado() {
     }
 
-    
     @Override
     public void Disponible(Estado e) {
         e.setEstado(new Disponible());
@@ -22,9 +22,10 @@ public class Reservado implements IEstado{
     }
 
     @Override
-    public void Reservado(Estado e) {
-         e.setMensaje("La Bicicleta se encuentra en reserva");
+    public void Reservado(Estado e) throws Exception {
+        e.setMensaje("La Bicicleta se encuentra en reserva");
         e.setEstadoActual("Reservado");
+       throw new Exception("La Bicicleta se encuentra en reserva");                       
     }
 
     @Override
@@ -35,9 +36,10 @@ public class Reservado implements IEstado{
     }
 
     @Override
-    public void Devuelto(Estado e) {
-         e.setMensaje("La Bicicleta no puede ser devuelto");
+    public void Devuelto(Estado e) throws Exception {
+        e.setMensaje("La Bicicleta no puede ser devuelto");
         e.setEstadoActual("Reservado");
+       throw new Exception("La Bicicleta no puede ser devuelto");                       
     }
-    
+
 }

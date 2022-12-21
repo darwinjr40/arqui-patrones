@@ -66,6 +66,7 @@ public class PCliente extends javax.swing.JFrame {
             limpiar();
        
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Formato de email no valido", "Registrar", JOptionPane.INFORMATION_MESSAGE);
             System.out.println(" (Presentacion) Error al guardar datos");
         }
     }
@@ -82,6 +83,7 @@ public class PCliente extends javax.swing.JFrame {
             listarTabla();
             limpiar();
         } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Formato de email no valido", "Registrar", JOptionPane.INFORMATION_MESSAGE);            
             System.err.println("Capa presentacion error al modificar " + e.getMessage());
         }
     }
@@ -93,6 +95,7 @@ public class PCliente extends javax.swing.JFrame {
             listarTabla();
             limpiar();
         } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Error al eliminar", "Registrar", JOptionPane.INFORMATION_MESSAGE);
              System.err.println("Capa presentacion error al eliminar " + e.getMessage());
         }
     } 

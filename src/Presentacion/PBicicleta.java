@@ -31,7 +31,6 @@ public class PBicicleta extends javax.swing.JFrame {
     private String color;
     private int idTipo;
     private String estado;
-    private Estado stateV;
     /**
      * Creates new form PArticulo
      */
@@ -39,9 +38,8 @@ public class PBicicleta extends javax.swing.JFrame {
         initComponents();
         nbicicleta = new NBicicleta();
         ntipo = new NTipo();
-        this.setTitle("Examen Final");
+        this.setTitle("Examen #2");
         this.setLocationRelativeTo(null);
-        stateV = new Estado(new Disponible());
         listarCombos();
         listar(idTipo);
     }
@@ -58,7 +56,6 @@ public class PBicicleta extends javax.swing.JFrame {
             this.idBicicleta = Integer.parseInt(txtId.getText());
             this.modelo = txtModelo.getText();
             this.color = txtColor.getText();
-            this.stateV = new Estado(new Disponible());
             this.estado = this.boxEstado.getSelectedItem().toString();
             this.idTipo = Integer.parseInt(idTipos[0]);
             
@@ -66,6 +63,7 @@ public class PBicicleta extends javax.swing.JFrame {
             listar(idTipo);
             limpiar();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.toString());
             System.out.println(" (Presentacion) Error al guardar datos");
         }    
     }
@@ -84,6 +82,7 @@ public class PBicicleta extends javax.swing.JFrame {
             listar(idTipo);
             limpiar();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.toString());
             System.err.println("Capa presentacion error al modificar" + e.getMessage());
         }
     }
@@ -159,6 +158,8 @@ public class PBicicleta extends javax.swing.JFrame {
         ID_Label1 = new javax.swing.JLabel();
         boxEstado = new javax.swing.JComboBox<>();
         btnEstado = new javax.swing.JButton();
+        btnListar = new javax.swing.JButton();
+        btnListarAll = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -212,6 +213,11 @@ public class PBicicleta extends javax.swing.JFrame {
         jdDatos.setViewportView(jtDatos);
 
         boxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxTipoActionPerformed(evt);
+            }
+        });
 
         registrar_btn.setText("Registrar");
         registrar_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -237,11 +243,30 @@ public class PBicicleta extends javax.swing.JFrame {
         ID_Label1.setText("ESTADO");
 
         boxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Reservado", "Alquilado", "Devuelto" }));
+        boxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxEstadoActionPerformed(evt);
+            }
+        });
 
         btnEstado.setText("Cambiar Estado");
         btnEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEstadoActionPerformed(evt);
+            }
+        });
+
+        btnListar.setText("listar tipo");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
+
+        btnListarAll.setText("listar all");
+        btnListarAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarAllActionPerformed(evt);
             }
         });
 
@@ -289,7 +314,11 @@ public class PBicicleta extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(actualizar_btn)
                                 .addGap(18, 18, 18)
-                                .addComponent(eliminar_btn))))
+                                .addComponent(eliminar_btn)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnListar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnListarAll))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jdDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -328,7 +357,9 @@ public class PBicicleta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrar_btn)
                     .addComponent(actualizar_btn)
-                    .addComponent(eliminar_btn))
+                    .addComponent(eliminar_btn)
+                    .addComponent(btnListar)
+                    .addComponent(btnListarAll))
                 .addGap(12, 12, 12)
                 .addComponent(jdDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(74, Short.MAX_VALUE))
@@ -368,38 +399,77 @@ public class PBicicleta extends javax.swing.JFrame {
         txtId.setText(model.getValueAt(rowSelected,0).toString()); 
         txtModelo.setText(model.getValueAt(rowSelected,1).toString()); 
         txtColor.setText(model.getValueAt(rowSelected,2).toString());
-        setEstadoBox(model.getValueAt(rowSelected,3).toString()); 
+//        setEstadoBox(model.getValueAt(rowSelected,3).toString()); 
     }//GEN-LAST:event_jtDatosMouseClicked
 
     private void btnEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadoActionPerformed
         // TODO add your handling code here:
         estado = boxEstado.getSelectedItem().toString();
       
-        switch (estado) {
-            case "Disponible":
-                stateV.getEstado().Disponible(stateV);
-                 JOptionPane.showMessageDialog(null, stateV.getMensaje());
-                 
-            break;
-            case "Reservado":
-                   stateV.getEstado().Reservado(stateV);
-                 JOptionPane.showMessageDialog(null, stateV.getMensaje());
-            break;
-            case "Alquilado":
-                   stateV.getEstado().Alquilado(stateV);
-                 JOptionPane.showMessageDialog(null, stateV.getMensaje());
-            break;
-            case "Devuelto":
-                   stateV.getEstado().Devuelto(stateV);
-                 JOptionPane.showMessageDialog(null, stateV.getMensaje());
-            break;
-            
-            default:
-                throw new AssertionError();
-        }
+//        switch (estado) {
+//            case "Disponible":
+//                stateV.getEstado().Disponible(stateV);
+//                 JOptionPane.showMessageDialog(null, stateV.getMensaje());
+//                 
+//            break;
+//            case "Reservado":
+//                   stateV.getEstado().Reservado(stateV);
+//                 JOptionPane.showMessageDialog(null, stateV.getMensaje());
+//            break;
+//            case "Alquilado":
+//                   stateV.getEstado().Alquilado(stateV);
+//                 JOptionPane.showMessageDialog(null, stateV.getMensaje());
+//            break;
+//            case "Devuelto":
+//                   stateV.getEstado().Devuelto(stateV);
+//                 JOptionPane.showMessageDialog(null, stateV.getMensaje());
+//            break;
+//            
+//            default:
+//                throw new AssertionError();
+//        }
         //listarTabla();
         limpiar();
     }//GEN-LAST:event_btnEstadoActionPerformed
+
+    private void boxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxEstadoActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+       this.listar(idTipo);
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnListarAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarAllActionPerformed
+         try {
+            ArrayList<Object[]> bicicleta = new ArrayList<>();
+            bicicleta = nbicicleta.ListarTodos();
+            
+            if(!bicicleta.isEmpty()){
+                String[] colums = { "ID", "Modelo", "Color","Estado","IdTipo"};
+                String data[][] = new String[bicicleta.size()][bicicleta.get(0).length];
+            for (int i = 0; i < bicicleta.size(); i++) {
+                data[i][0] = String.valueOf(bicicleta.get(i)[0]);
+                data[i][1] = String.valueOf(bicicleta.get(i)[1]);
+                data[i][2] = String.valueOf(bicicleta.get(i)[2]);
+                data[i][3] = String.valueOf(bicicleta.get(i)[3]);
+                data[i][4] = String.valueOf(bicicleta.get(i)[4]);
+            }
+            jtDatos.setModel(new DefaultTableModel(data, colums));
+            }else{
+                deleteAllRows();
+            }
+            
+        } catch (SQLException e) {
+            System.err.println("Capa presentacion error al listar bicicletas" + e.getMessage());
+        }
+    }//GEN-LAST:event_btnListarAllActionPerformed
+
+    private void boxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoActionPerformed
+        String[] idTipos = boxTipo.getSelectedItem().toString().split(" ");
+        this.idTipo = Integer.parseInt(idTipos[0]);
+//        System.out.println(idTipo);
+    }//GEN-LAST:event_boxTipoActionPerformed
 
     
      /*void listarTabla(){
@@ -410,28 +480,7 @@ public class PBicicleta extends javax.swing.JFrame {
         boxTipo.setModel(ntipo.listarCombo());   
     };
     
-    private void setEstadoBox(String toString) {
-        switch (toString) {
-            case "Disponible":
-                  boxEstado.setSelectedIndex(0);
-                  stateV = new Estado(new Disponible());
-            break;
-            case "Reservado":
-                 boxEstado.setSelectedIndex(1);
-                  stateV = new Estado(new Reservado());
-            break;
-            case "Alquilado":
-                 boxEstado.setSelectedIndex(2);
-                  stateV = new Estado(new Alquilado());
-            break;
-            case "Devuelto":
-                 boxEstado.setSelectedIndex(3);
-                  stateV = new Estado(new Devuelto());
-                break;
-            default:
-                throw new AssertionError();
-        }
-    }
+
     
     /**
      * @param args the command line arguments
@@ -482,6 +531,8 @@ public class PBicicleta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxEstado;
     private javax.swing.JComboBox<String> boxTipo;
     private javax.swing.JButton btnEstado;
+    private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnListarAll;
     private javax.swing.JButton eliminar_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jdDatos;

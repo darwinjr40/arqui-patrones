@@ -25,7 +25,7 @@ public class PTipo extends javax.swing.JFrame {
         initComponents();
         ntipo = new NTipo();
         
-        this.setTitle("EXAMEN FINAL");
+        this.setTitle("Examen #2");
         this.setLocationRelativeTo(null);
         listarTabla();
     }

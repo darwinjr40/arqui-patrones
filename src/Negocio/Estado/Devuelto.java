@@ -21,20 +21,23 @@ public class Devuelto implements IEstado{
     }
 
     @Override
-    public void Reservado(Estado e) {
+    public void Reservado(Estado e) throws Exception {
        e.setMensaje("La bicicleta no puede estar reservada");
-       e.setEstadoActual("Devuelto");
+       e.setEstadoActual("Reservado");
+       throw new Exception("La bicicleta no puede estar reservada");               
     }
 
     @Override
-    public void Alquilado(Estado e) {
-          e.setMensaje("La Bicicleta no puede ser alquilada");
-       e.setEstadoActual("Devuelto");
+    public void Alquilado(Estado e) throws Exception {
+       e.setMensaje("La Bicicleta no puede ser alquilada");
+       e.setEstadoActual("Alquilado");
+       throw new Exception("La Bicicleta no puede ser alquilada");                      
     }
 
     @Override
-    public void Devuelto(Estado e) {
+    public void Devuelto(Estado e) throws Exception {
        e.setMensaje("La Bicicleta ya fue devuelta");
        e.setEstadoActual("Devuelto");
+       throw new Exception("La Bicicleta ya fue devuelta");                      
     }
 }

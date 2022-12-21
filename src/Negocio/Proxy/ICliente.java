@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author steph
  */
 public interface ICliente {
-    public int registrar(int idCliente, String nombre,String apellido,String email,String celular,String direccion );
-    public int modificar(int idCliente, String nombre,String apellido,String email,String celular,String direccion);
-    public int eliminar(int idCliente);
+    public int registrar(int idCliente, String nombre,String apellido,String email,String celular,String direccion ) throws Exception;
+    public int modificar(int idCliente, String nombre,String apellido,String email,String celular,String direccion) throws Exception;
+    public int eliminar(int idCliente) throws Exception;
 }

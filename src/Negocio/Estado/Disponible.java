@@ -9,15 +9,17 @@ package Negocio.Estado;
  *
  * @author steph
  */
-public class Disponible implements IEstado{
-    
+public class Disponible implements IEstado {
+
     public Disponible() {
     }
-    
+
     @Override
-    public void Disponible(Estado e) {
-       e.setMensaje("La Bicicleta se encuentra Disponible");
-       e.setEstadoActual("Disponible");
+    public void Disponible(Estado e) throws Exception {
+        e.setMensaje("La Bicicleta se encuentra Disponible");
+        e.setEstadoActual("Disponible");
+        throw new Exception("La Bicicleta se encuentra Disponible");
+
     }
 
     @Override
@@ -29,13 +31,15 @@ public class Disponible implements IEstado{
 
     @Override
     public void Alquilado(Estado e) {
-        e.setMensaje("La Bicicleta no puede pasar a ser alquilada");
-        e.setEstadoActual("Disponible");
+        e.setEstado(new Alquilado());
+        e.setMensaje("La Bicicleta paso a ser alquilada");
+        e.setEstadoActual("Alquilado");
     }
 
     @Override
-    public void Devuelto(Estado e) {
-         e.setMensaje("La Bicicleta no puede ser devuelta");
-        e.setEstadoActual("Disponible");
+    public void Devuelto(Estado e) throws Exception {
+        e.setMensaje("La Bicicleta no puede ser devuelta");
+        e.setEstadoActual("Devuelto");
+        throw new Exception("La Bicicleta no puede ser devuelta");
     }
 }

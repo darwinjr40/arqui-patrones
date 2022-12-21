@@ -22,7 +22,7 @@ public class ClienteProxy implements ICliente{
     
 
     @Override
-    public int registrar(int idCliente, String nombre, String apellido, String email, String celular, String direccion) {
+    public int registrar(int idCliente, String nombre, String apellido, String email, String celular, String direccion) throws Exception {
         String regx = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"; 
         Pattern pattern = Pattern.compile(regx);  
          Matcher matcher = pattern.matcher(email);    
@@ -32,14 +32,16 @@ public class ClienteProxy implements ICliente{
              }
              return clienteVerificado.registrar(idCliente, nombre, apellido, email, celular, direccion);
          }else{
-             JOptionPane.showMessageDialog(null, "Formato de email no valido", "Registrar", JOptionPane.INFORMATION_MESSAGE);
+            throw new Exception("Formato de email no valido");
+ 
+//             JOptionPane.showMessageDialog(null, "Formato de email no valido", "Registrar", JOptionPane.INFORMATION_MESSAGE);
              //System.out.println("Formato de email no valido");
          }
-         return -1;
+//         return -1;
     }
 
     @Override
-    public int modificar(int idCliente, String nombre, String apellido, String email, String celular, String direccion) {
+    public int modificar(int idCliente, String nombre, String apellido, String email, String celular, String direccion) throws Exception {
         String regx = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"; 
         Pattern pattern = Pattern.compile(regx);  
          Matcher matcher = pattern.matcher(email);         
@@ -49,11 +51,12 @@ public class ClienteProxy implements ICliente{
                 return clienteVerificado.modificar(idCliente,nombre, apellido, email, celular, direccion);
              }else{
                 return clienteVerificado.modificar(idCliente,nombre, apellido, email, celular, direccion);
-             }
+             }  
          }else{
-         JOptionPane.showMessageDialog(null, "Formato de email no valido", "Modificar", JOptionPane.INFORMATION_MESSAGE);
+            throw new Exception("Formato de email no valido");             
+//         JOptionPane.showMessageDialog(null, "Formato de email no valido", "Modificar", JOptionPane.INFORMATION_MESSAGE);
         }
-        return -1;
+//        return -1;
     }
 
     @Override

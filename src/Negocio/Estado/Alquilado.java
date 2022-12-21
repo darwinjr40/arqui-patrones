@@ -15,21 +15,24 @@ public class Alquilado implements IEstado{
 
     
     @Override
-    public void Disponible(Estado e) {
+    public void Disponible(Estado e) throws Exception {
         e.setMensaje("La Bicicleta no  puede pasar a estar disponible");
-        e.setEstadoActual("Alquilado");
+        e.setEstadoActual("Disponible");
+        throw new Exception("La Bicicleta no  puede pasar a estar disponible");
     }
 
     @Override
-    public void Reservado(Estado e) {
+    public void Reservado(Estado e) throws Exception {
         e.setMensaje("La Bicicleta no puede volver a reserva");
-        e.setEstadoActual("Alquilado");
+        e.setEstadoActual("Reservado");
+        throw new Exception("La Bicicleta no puede volver a reserva");        
     }
 
     @Override
-    public void Alquilado(Estado e) {
+    public void Alquilado(Estado e) throws Exception {
          e.setMensaje("La Bicicleta se encuentra alquilada");
         e.setEstadoActual("Alquilado");
+        throw new Exception("La Bicicleta se encuentra alquilada");        
     }
 
     @Override

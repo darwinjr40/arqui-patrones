@@ -36,7 +36,7 @@ public final class PNotaAlquiler extends javax.swing.JFrame {
         nnotaalquiler = new NNotaAlquiler();
         ncliente = new NCliente();
         nbicicleta = new NBicicleta();
-        this.setTitle("Examen Final");
+        this.setTitle("Examen #2");
         this.setLocationRelativeTo(null);
         listarTabla(); 
         listarTablaDetalle();
