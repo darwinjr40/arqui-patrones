@@ -249,7 +249,7 @@ public class PBicicleta extends javax.swing.JFrame {
             }
         });
 
-        btnEstado.setText("Cambiar Estado");
+        btnEstado.setText("Cambiar Estado-no funciona");
         btnEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEstadoActionPerformed(evt);

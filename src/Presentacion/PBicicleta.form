@@ -305,7 +305,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEstado">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cambiar Estado"/>
+        <Property name="text" type="java.lang.String" value="Cambiar Estado-no funciona"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstadoActionPerformed"/>
