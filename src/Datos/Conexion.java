@@ -22,7 +22,8 @@ public class Conexion {
     public static boolean abrirConexion(){
         try {
             Class.forName("org.postgresql.Driver");
-            conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/db_arquitectura_02", "postgres", "0406");
+//            conexion = DriverManager.getConnection("jdbc:postgresql://miempresa.fun:5432/db_arquitectura_02", "postgres", "0000");
+            conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/db_arquitectura_02", "postgres", "0000");
 //            conexion = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/db_arquitectura_02", "postgres", "0406");
             statement = conexion.createStatement();
             System.out.println("driver encontrado");
